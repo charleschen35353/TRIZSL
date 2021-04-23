@@ -54,3 +54,4 @@ python train.py -f 4 -s 8 -d 50 -e 20 -o test.txt
 
 You may also run the provided jupyter notebook and modify details for your own purpose.
 
+Or you may directly view our provided notebook for the plotted results.
