@@ -36,7 +36,7 @@ Harmonic mean performance: 62.9%
 
 Make sure you download the file ```res101.mat``` and place it under ```$ ./data/Features/ResNet101/```.
 
-You can download it from [here]() or the official website.
+You can download it from [here](https://drive.google.com/drive/folders/1a6BCzI7LLJqLLRs8_UhHXcRdZ_Sy11OK?usp=sharing) or the official website.
 
 Please make sure you have tensorflow 2.4 installed, with tf-addons. 
 
