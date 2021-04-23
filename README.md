@@ -12,9 +12,9 @@ Comparing to the benchmark of classifying each attribute naively which gives ~53
 
 We also have better achievement on GZSL(general zero shot learning) in terms of harmonic mean on AWA2 over SGMA(Zhu et al., 2019) and similar performance(63%) against the generative method LsrGAN (Vyas et al., 2020). 
 
-Please refer to our [paper](https://) for more details. 
+Please refer to our [paper](https://github.com/charleschen35353/TRIZSL/blob/master/Zero-shot%20Learning%20under%20Low%20Resource%20Data.pdf) for more details. 
 
-And presentation: https://youtu.be/EcT0f-5LiGg
+And [presentation](https://youtu.be/EcT0f-5LiGg)
 
 ## Performance
 
