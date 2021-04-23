@@ -42,7 +42,7 @@ Please make sure you have tensorflow 2.4 installed, with tf-addons.
 
 To conduct an experiment, please run the following: 
 
-$python3 train.py -f [first layer size] -s [secon layer size] -d [data per class] -o [outputfile]
+```$python3 train.py -f [first layer size] -s [second layer size] -d [data per class] -o [outputfile]```
 
 You may also run the provided jupyter notebook and modify details for your own purpose.
 
