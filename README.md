@@ -14,7 +14,7 @@ We also have better achievement on GZSL(general zero shot learning) in terms of 
 
 Please refer to our [paper](https://github.com/charleschen35353/TRIZSL/blob/master/Zero-shot%20Learning%20under%20Low%20Resource%20Data.pdf) for more details. 
 
-And [presentation](https://youtu.be/EcT0f-5LiGg)
+And [presentation](https://youtu.be/EcT0f-5LiGg).
 
 ## Performance
 
