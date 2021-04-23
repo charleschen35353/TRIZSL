@@ -31,11 +31,12 @@ unseen precision@3: 92.430%
 
 Harmonic mean performance: 62.9%
 
-## Dataset
-
-Our experiment uses the proposed split of [AWA2](https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/zero-shot-learning/zero-shot-learning-the-good-the-bad-and-the-ugly/).
 
 ## Instructions 
+
+Make sure you download the file ```res101.mat``` and place it under ```$ ./data/Features/ResNet101/```.
+
+You can download it from [here]() or the official website.
 
 Please make sure you have tensorflow 2.4 installed, with tf-addons. 
 
