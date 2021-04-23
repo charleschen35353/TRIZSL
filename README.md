@@ -42,7 +42,13 @@ Please make sure you have tensorflow 2.4 installed, with tf-addons.
 
 To conduct an experiment, please run the following: 
 
-```$python3 train.py -f [first layer size] -s [second layer size] -d [data per class] -o [experiment result file]```
+```$python3 train.py -f [first layer size] -s [second layer size] -d [data per class] -e [epochs per embedder] -o [experiment result file]```
+
+such as 
+
+```
+python train.py -f 4 -s 8 -d 50 -e 20 -o test.txt
+```
 
 You may also run the provided jupyter notebook and modify details for your own purpose.
 
