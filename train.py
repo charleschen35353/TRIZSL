@@ -21,30 +21,6 @@ output_pth = args.output
 
 tf.get_logger().setLevel('ERROR')
 
-
-
-root_dir = "./"
-
-data_dir = os.path.join(root_dir, "data")
-res_feature_dir = os.path.join(data_dir, "Features", "ResNet101")
-
-predicate_continuous = []
-predicate_binary = []
-
-f = open(os.path.join(data_dir, "predicate-matrix-continuous.txt"))
-for line in f:
-    p = np.array(line.strip().split()).astype(np.float)
-    predicate_continuous += [p]
-predicate_continuous = np.array(predicate_continuous)
-
-f = open(os.path.join(data_dir, "predicate-matrix-binary.txt"))
-for line in f:
-    p = np.array(line.strip().split()).astype(np.float)
-    predicate_binary += [p]
-predicate_binary = np.array(predicate_binary)
-
-print("Predicate Loaded. Shape: {}".format(predicate_binary.shape))
-
 data_per_class = [1,2,5,10,20,40,80,150,400,100000]
 sp1 = collections.defaultdict(list)
 sp3 = collections.defaultdict(list)

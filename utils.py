@@ -7,6 +7,21 @@ import tensorflow_addons as tfa
 import scipy.io
 from sklearn.metrics.pairwise import cosine_similarity
 
+root_dir = "./"
+data_dir = os.path.join(root_dir, "data")
+res_feature_dir = os.path.join(data_dir, "Features", "ResNet101")
+
+predicate_continuous = []
+predicate_binary = []
+
+f = open(os.path.join(root_dir, "predicate-matrix-binary.txt"))
+for line in f:
+    p = np.array(line.strip().split()).astype(np.float)
+    predicate_binary += [p]
+predicate_binary = np.array(predicate_binary)
+
+print("Predicate Loaded. Shape: {}".format(predicate_binary.shape))
+
 def findsubsets(S,m):
     if m == len(S):
         return S
@@ -91,19 +106,20 @@ def create_attr_extractors(preds, train_x, train_y, create_net_func, predicates,
                 print("[INFO] Training attribute #{} out of {}".format(i+1, len(preds)))
                 print("[INFO] Training done with loss = {}".format(history.history['loss'][-1]))
             models[p].save_weights("./{}_{}/ckpt/weights_{}".format(\
-                num_train, data_per_class, p))
+                layer_sizes, data_per_class, p))
             x_preds = models[p](train_x).numpy()
             true_vecs =  x_preds[y_p == 1,:]
             false_vecs =  x_preds[y_p == 0,:]
             true_means[p] = np.mean(true_vecs, axis = 0)
             false_means[p] = np.mean(false_vecs, axis = 0)
-            np.save("./{}_{}/mean_true_{}".format(num_train, data_per_class, p), true_means[p])
-            np.save("./{}_{}/mean_false_{}".format(num_train, data_per_class, p), false_means[p])
+            np.save("./{}_{}/mean_true_{}".format(layer_sizes, data_per_class, p), true_means[p])
+            np.save("./{}_{}/mean_false_{}".format(layer_sizes, data_per_class, p), false_means[p])
+        
         else:
             models[p] = create_attr_net(train_x.shape[1], lr = lr, \
-                                    restore = (num_train, data_per_class, p))
-            true_means[p] = np.load("./{}_{}/mean_true_{}.npy".format(num_train, data_per_class, p))
-            false_means[p] = np.load("./{}_{}/mean_false_{}.npy".format(num_train, data_per_class, p))
+                                    restore = (layer_sizes, data_per_class, p))
+            true_means[p] = np.load("./{}_{}/mean_true_{}.npy".format(layer_sizes, data_per_class, p))
+            false_means[p] = np.load("./{}_{}/mean_false_{}.npy".format(layer_sizes, data_per_class, p))
 
     return models, true_means, false_means
 
@@ -158,7 +174,7 @@ def run_experiment(num_train, data_per_class, layer_sizes, epochs = 50,  batch_s
     print("[INFO] Forming dataset...")
 
 
-    split_info = scipy.io.loadmat(os.path.join(data_dir,'binaryAtt_splits.mat'))
+    split_info = scipy.io.loadmat(os.path.join(root_dir,'binaryAtt_splits.mat'))
     data =  scipy.io.loadmat(os.path.join(res_feature_dir,'res101.mat'))
     X = data['features'].T
     y = data['labels']-1
@@ -206,13 +222,13 @@ def run_experiment(num_train, data_per_class, layer_sizes, epochs = 50,  batch_s
         print("[INFO] Start training...")
     else:
         print("[INFO] Loadining model...")
-
-
+    
     res  = create_attr_extractors(preds, train_x, train_y, create_attr_net, \
                                      predicates, \
                                      layer_sizes = layer_sizes, \
                                      num_train = num_train, \
-                                     epochs = epochs,
+                                     epochs = epochs, 
+                                     data_per_class = data_per_class, \
                                      test = test)
 
     models, true_means, false_means = res
